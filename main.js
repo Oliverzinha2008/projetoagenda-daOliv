@@ -24,6 +24,8 @@ contadores[2].textContent = calculaTempo(tempoObjetivo3);
 const tempoObjetivo4 = new Date("2030-12-31T00:00:00");
 contadores[3].textContent = calculaTempo(tempoObjetivo4);
 
+const tempos = [tempoObjetivo1, tempoObjetivo2, tempoObjetivo3, tempoObjetivo4];
+
 function calculaTempo(tempoObjetivo){
 let tempoAtual = new Date();
 let tempoFinal = tempoObjetivo - tempoAtual;
@@ -39,3 +41,16 @@ horas %=24;
 dias %=365;
 return anos + " Anos " + dias + " Dias " + horas + " Horas " + minutos + " Minutos " + segundos + " Segundos ";
 }
+
+function atualizaCronometro() {
+  for (let i = 0; i < contadores.length; i++) {
+    contadores[i].textContent = calculaTempo(tempos[i]);
+  }
+}
+
+function comecaCronometro() {
+  atualizaCronometro();
+  setInterval(atualizaCronometro, 1000);
+}
+
+comecaCronometro();
